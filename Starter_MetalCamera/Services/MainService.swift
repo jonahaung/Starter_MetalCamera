@@ -11,14 +11,15 @@ import AVFoundation
 
 final class MainService: ObservableObject {
     
-    let metalView = PreviewMetalView()
-    let videoService = VideoService()
+    let metalView = CustomMetalView()
+    private let videoService = VideoService()
     private let filterService = FilterService()
+    private let visionService = VideoService()
     
     init() {
-       
         videoService.delegate = self
     }
+
     deinit {
         stop()
     }
@@ -31,6 +32,10 @@ extension MainService {
     }
     func stop() {
         
+    }
+    
+    func updateFilter(_ filterType: FilterType) {
+        filterService.updateFilter(filterType)
     }
 }
 

@@ -11,34 +11,9 @@ import CoreMedia
 import CoreVideo
 import CoreImage
 
-enum FilterType {
-    case HexagonalPixellate, HeightFieldFromMask, Crystal, Chrome, EdgesWork, NoiceReduce, Custom
-    
-    var ciFilterName: String {
-        switch self {
-        case .HexagonalPixellate:
-            return "CIHexagonalPixellate"
-        case .HeightFieldFromMask:
-            return "CIHeightFieldFromMask"
-        case .Crystal:
-            return "CICrystallize"
-        case .Chrome:
-            return "CIPhotoEffectChrome"
-        case .EdgesWork:
-            return "CIEdges"
-        case .NoiceReduce:
-            return "CINoiseReduction"
-        case .Custom:
-            return "CISharpenLuminance"
-        }
-        
-    }
-    
-}
-
 class VideoFilterRenderer: FilterRenderer {
     
-    var filterType: FilterType = .Custom {
+    var filterType: FilterType = .None {
         didSet {
             guard oldValue != self.filterType else {
                 return

@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		470DCFF1244AAC570059291B /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DCFF0244AAC570059291B /* FilterService.swift */; };
+		470DCFFD244AB76F0059291B /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DCFFC244AB76F0059291B /* FilterType.swift */; };
+		470DCFFF244AB7CE0059291B /* CustomMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DCFFE244AB7CE0059291B /* CustomMetalView.swift */; };
 		47F42CAB244AA65E003EE9BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CAA244AA65E003EE9BD /* AppDelegate.swift */; };
 		47F42CAD244AA65E003EE9BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CAC244AA65E003EE9BD /* SceneDelegate.swift */; };
 		47F42CAF244AA65E003EE9BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CAE244AA65E003EE9BD /* ContentView.swift */; };
 		47F42CB1244AA660003EE9BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F42CB0244AA660003EE9BD /* Assets.xcassets */; };
 		47F42CB4244AA660003EE9BD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F42CB3244AA660003EE9BD /* Preview Assets.xcassets */; };
 		47F42CB7244AA660003EE9BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47F42CB5244AA660003EE9BD /* LaunchScreen.storyboard */; };
-		47F42CBF244AA67E003EE9BD /* PreviewMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CBE244AA67E003EE9BD /* PreviewMetalView.swift */; };
 		47F42CC5244AA6BF003EE9BD /* VideoFilterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC3244AA6BF003EE9BD /* VideoFilterRenderer.swift */; };
 		47F42CC6244AA6BF003EE9BD /* FilterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC4244AA6BF003EE9BD /* FilterRenderer.swift */; };
 		47F42CCB244AA6CA003EE9BD /* DepthToGrayscale.metal in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC7244AA6CA003EE9BD /* DepthToGrayscale.metal */; };
@@ -28,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		470DCFF0244AAC570059291B /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		470DCFFC244AB76F0059291B /* FilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		470DCFFE244AB7CE0059291B /* CustomMetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMetalView.swift; sourceTree = "<group>"; };
 		47F42CA7244AA65E003EE9BD /* Starter_MetalCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starter_MetalCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F42CAA244AA65E003EE9BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47F42CAC244AA65E003EE9BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +39,6 @@
 		47F42CB3244AA660003EE9BD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		47F42CB6244AA660003EE9BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47F42CB8244AA660003EE9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47F42CBE244AA67E003EE9BD /* PreviewMetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMetalView.swift; sourceTree = "<group>"; };
 		47F42CC3244AA6BF003EE9BD /* VideoFilterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoFilterRenderer.swift; sourceTree = "<group>"; };
 		47F42CC4244AA6BF003EE9BD /* FilterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRenderer.swift; sourceTree = "<group>"; };
 		47F42CC7244AA6CA003EE9BD /* DepthToGrayscale.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = DepthToGrayscale.metal; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		470DCFFB244AB75C0059291B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				470DCFFC244AB76F0059291B /* FilterType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		47F42C9E244AA65E003EE9BD = {
 			isa = PBXGroup;
 			children = (
@@ -103,9 +113,9 @@
 		47F42CC0244AA68C003EE9BD /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				470DCFFB244AB75C0059291B /* Models */,
 				47F42CC2244AA6AF003EE9BD /* Shaders */,
 				47F42CC1244AA69B003EE9BD /* Filters */,
-				47F42CBE244AA67E003EE9BD /* PreviewMetalView.swift */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -115,6 +125,7 @@
 			children = (
 				47F42CC4244AA6BF003EE9BD /* FilterRenderer.swift */,
 				47F42CC3244AA6BF003EE9BD /* VideoFilterRenderer.swift */,
+				470DCFFE244AB7CE0059291B /* CustomMetalView.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -224,9 +235,10 @@
 				47F42CCB244AA6CA003EE9BD /* DepthToGrayscale.metal in Sources */,
 				470DCFF1244AAC570059291B /* FilterService.swift in Sources */,
 				47F42CAB244AA65E003EE9BD /* AppDelegate.swift in Sources */,
+				470DCFFD244AB76F0059291B /* FilterType.swift in Sources */,
 				47F42CD1244AA6E8003EE9BD /* GeneralExtensions.swift in Sources */,
-				47F42CBF244AA67E003EE9BD /* PreviewMetalView.swift in Sources */,
 				47F42CCC244AA6CA003EE9BD /* RosyEffect.metal in Sources */,
+				470DCFFF244AB7CE0059291B /* CustomMetalView.swift in Sources */,
 				47F42CC6244AA6BF003EE9BD /* FilterRenderer.swift in Sources */,
 				47F42CC5244AA6BF003EE9BD /* VideoFilterRenderer.swift in Sources */,
 				47F42CAD244AA65E003EE9BD /* SceneDelegate.swift in Sources */,

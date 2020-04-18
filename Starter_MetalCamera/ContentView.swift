@@ -19,14 +19,32 @@ struct MainView: View {
             VStack {
                 HStack{
                     Spacer()
-                    Text(service.videoService.fps.description)
+                    Text("10 FPS")
                 }
                 Spacer()
+                
+                HStack {
+                    Spacer()
+                    VStack(spacing: 20) {
+                        ForEach(FilterType.allCases, id: \.self) { filter in
+                            Button(action: {
+                                self.service.updateFilter(filter)
+                            }) {
+                                Text(filter.description)
+                            }
+                        }
+                    }
+                }
+                
+                Spacer()
+                HStack {
+                    Text("Bottom Bar")
+                }
             }
             .padding()
-            .foregroundColor(.white)
         }
-            .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.all)
+        .foregroundColor(.white)
         .onAppear {
             self.service.start()
         }
@@ -37,10 +55,10 @@ struct MetalViewContainer: UIViewRepresentable {
     
     let service: MainService
     
-    func makeUIView(context: Context) -> PreviewMetalView {
+    func makeUIView(context: Context) -> CustomMetalView {
         return service.metalView
     }
     
-    func updateUIView(_ uiView: PreviewMetalView, context: Context) {}
+    func updateUIView(_ uiView: CustomMetalView, context: Context) {}
     
 }

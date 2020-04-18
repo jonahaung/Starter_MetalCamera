@@ -10,7 +10,7 @@ import Metal
 import MetalKit
 import UIKit
 
-class PreviewMetalView: MTKView {
+class CustomMetalView: MTKView {
     
     enum Rotation: Int {
         case rotate0Degrees
