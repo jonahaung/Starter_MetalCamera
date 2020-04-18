@@ -9,13 +9,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var service = MainService()
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack{
+            MetalViewContainer(service: service)
+            
+            VStack {
+                HStack{
+                    Spacer()
+                    Text(service.videoService.fps.description)
+                }
+                Spacer()
+            }
+            .padding()
+            .foregroundColor(.white)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .onAppear {
+            self.service.didAppear()
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct MetalViewContainer: UIViewRepresentable {
+    
+    let service: MainService
+    
+    func makeUIView(context: Context) -> PreviewMetalView {
+        return service.arView
     }
+    
+    func updateUIView(_ uiView: PreviewMetalView, context: Context) {}
+    
 }

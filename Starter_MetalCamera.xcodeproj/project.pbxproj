@@ -13,6 +13,16 @@
 		47F42CB1244AA660003EE9BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F42CB0244AA660003EE9BD /* Assets.xcassets */; };
 		47F42CB4244AA660003EE9BD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47F42CB3244AA660003EE9BD /* Preview Assets.xcassets */; };
 		47F42CB7244AA660003EE9BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47F42CB5244AA660003EE9BD /* LaunchScreen.storyboard */; };
+		47F42CBF244AA67E003EE9BD /* PreviewMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CBE244AA67E003EE9BD /* PreviewMetalView.swift */; };
+		47F42CC5244AA6BF003EE9BD /* VideoFilterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC3244AA6BF003EE9BD /* VideoFilterRenderer.swift */; };
+		47F42CC6244AA6BF003EE9BD /* FilterRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC4244AA6BF003EE9BD /* FilterRenderer.swift */; };
+		47F42CCB244AA6CA003EE9BD /* DepthToGrayscale.metal in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC7244AA6CA003EE9BD /* DepthToGrayscale.metal */; };
+		47F42CCC244AA6CA003EE9BD /* RosyEffect.metal in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC8244AA6CA003EE9BD /* RosyEffect.metal */; };
+		47F42CCD244AA6CA003EE9BD /* Mixer.metal in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CC9244AA6CA003EE9BD /* Mixer.metal */; };
+		47F42CCE244AA6CA003EE9BD /* PassThrough.metal in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CCA244AA6CA003EE9BD /* PassThrough.metal */; };
+		47F42CD1244AA6E8003EE9BD /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CD0244AA6E8003EE9BD /* GeneralExtensions.swift */; };
+		47F42CD5244AA718003EE9BD /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CD3244AA718003EE9BD /* VideoService.swift */; };
+		47F42CD6244AA718003EE9BD /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CD4244AA718003EE9BD /* MainService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +34,16 @@
 		47F42CB3244AA660003EE9BD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		47F42CB6244AA660003EE9BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47F42CB8244AA660003EE9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47F42CBE244AA67E003EE9BD /* PreviewMetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMetalView.swift; sourceTree = "<group>"; };
+		47F42CC3244AA6BF003EE9BD /* VideoFilterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoFilterRenderer.swift; sourceTree = "<group>"; };
+		47F42CC4244AA6BF003EE9BD /* FilterRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRenderer.swift; sourceTree = "<group>"; };
+		47F42CC7244AA6CA003EE9BD /* DepthToGrayscale.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = DepthToGrayscale.metal; sourceTree = "<group>"; };
+		47F42CC8244AA6CA003EE9BD /* RosyEffect.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = RosyEffect.metal; sourceTree = "<group>"; };
+		47F42CC9244AA6CA003EE9BD /* Mixer.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Mixer.metal; sourceTree = "<group>"; };
+		47F42CCA244AA6CA003EE9BD /* PassThrough.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PassThrough.metal; sourceTree = "<group>"; };
+		47F42CD0244AA6E8003EE9BD /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
+		47F42CD3244AA718003EE9BD /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
+		47F42CD4244AA718003EE9BD /* MainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +76,12 @@
 		47F42CA9244AA65E003EE9BD /* Starter_MetalCamera */ = {
 			isa = PBXGroup;
 			children = (
+				47F42CAE244AA65E003EE9BD /* ContentView.swift */,
+				47F42CD2244AA70E003EE9BD /* Services */,
+				47F42CCF244AA6DB003EE9BD /* Extensions */,
+				47F42CC0244AA68C003EE9BD /* Metal */,
 				47F42CAA244AA65E003EE9BD /* AppDelegate.swift */,
 				47F42CAC244AA65E003EE9BD /* SceneDelegate.swift */,
-				47F42CAE244AA65E003EE9BD /* ContentView.swift */,
 				47F42CB0244AA660003EE9BD /* Assets.xcassets */,
 				47F42CB5244AA660003EE9BD /* LaunchScreen.storyboard */,
 				47F42CB8244AA660003EE9BD /* Info.plist */,
@@ -73,6 +96,53 @@
 				47F42CB3244AA660003EE9BD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		47F42CC0244AA68C003EE9BD /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				47F42CC2244AA6AF003EE9BD /* Shaders */,
+				47F42CC1244AA69B003EE9BD /* Filters */,
+				47F42CBE244AA67E003EE9BD /* PreviewMetalView.swift */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		47F42CC1244AA69B003EE9BD /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				47F42CC4244AA6BF003EE9BD /* FilterRenderer.swift */,
+				47F42CC3244AA6BF003EE9BD /* VideoFilterRenderer.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		47F42CC2244AA6AF003EE9BD /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				47F42CC7244AA6CA003EE9BD /* DepthToGrayscale.metal */,
+				47F42CC9244AA6CA003EE9BD /* Mixer.metal */,
+				47F42CCA244AA6CA003EE9BD /* PassThrough.metal */,
+				47F42CC8244AA6CA003EE9BD /* RosyEffect.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		47F42CCF244AA6DB003EE9BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				47F42CD0244AA6E8003EE9BD /* GeneralExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		47F42CD2244AA70E003EE9BD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				47F42CD4244AA718003EE9BD /* MainService.swift */,
+				47F42CD3244AA718003EE9BD /* VideoService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +216,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F42CCD244AA6CA003EE9BD /* Mixer.metal in Sources */,
+				47F42CD5244AA718003EE9BD /* VideoService.swift in Sources */,
+				47F42CCB244AA6CA003EE9BD /* DepthToGrayscale.metal in Sources */,
 				47F42CAB244AA65E003EE9BD /* AppDelegate.swift in Sources */,
+				47F42CD1244AA6E8003EE9BD /* GeneralExtensions.swift in Sources */,
+				47F42CBF244AA67E003EE9BD /* PreviewMetalView.swift in Sources */,
+				47F42CCC244AA6CA003EE9BD /* RosyEffect.metal in Sources */,
+				47F42CC6244AA6BF003EE9BD /* FilterRenderer.swift in Sources */,
+				47F42CC5244AA6BF003EE9BD /* VideoFilterRenderer.swift in Sources */,
 				47F42CAD244AA65E003EE9BD /* SceneDelegate.swift in Sources */,
+				47F42CCE244AA6CA003EE9BD /* PassThrough.metal in Sources */,
 				47F42CAF244AA65E003EE9BD /* ContentView.swift in Sources */,
+				47F42CD6244AA718003EE9BD /* MainService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +369,7 @@
 				DEVELOPMENT_TEAM = HJ9L53D9PB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Starter_MetalCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +390,7 @@
 				DEVELOPMENT_TEAM = HJ9L53D9PB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Starter_MetalCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
