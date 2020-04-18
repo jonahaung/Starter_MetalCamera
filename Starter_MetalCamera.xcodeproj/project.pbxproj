@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470DCFF1244AAC570059291B /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DCFF0244AAC570059291B /* FilterService.swift */; };
 		47F42CAB244AA65E003EE9BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CAA244AA65E003EE9BD /* AppDelegate.swift */; };
 		47F42CAD244AA65E003EE9BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CAC244AA65E003EE9BD /* SceneDelegate.swift */; };
 		47F42CAF244AA65E003EE9BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F42CAE244AA65E003EE9BD /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		470DCFF0244AAC570059291B /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		47F42CA7244AA65E003EE9BD /* Starter_MetalCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starter_MetalCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F42CAA244AA65E003EE9BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47F42CAC244AA65E003EE9BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				47F42CD4244AA718003EE9BD /* MainService.swift */,
+				470DCFF0244AAC570059291B /* FilterService.swift */,
 				47F42CD3244AA718003EE9BD /* VideoService.swift */,
 			);
 			path = Services;
@@ -219,6 +222,7 @@
 				47F42CCD244AA6CA003EE9BD /* Mixer.metal in Sources */,
 				47F42CD5244AA718003EE9BD /* VideoService.swift in Sources */,
 				47F42CCB244AA6CA003EE9BD /* DepthToGrayscale.metal in Sources */,
+				470DCFF1244AAC570059291B /* FilterService.swift in Sources */,
 				47F42CAB244AA65E003EE9BD /* AppDelegate.swift in Sources */,
 				47F42CD1244AA6E8003EE9BD /* GeneralExtensions.swift in Sources */,
 				47F42CBF244AA67E003EE9BD /* PreviewMetalView.swift in Sources */,

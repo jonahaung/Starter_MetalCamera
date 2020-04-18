@@ -1,14 +1,14 @@
 //
 //  ContentView.swift
-//  Starter_MetalCamera
+//  MyanmarTextScanner
 //
-//  Created by Aung Ko Min on 18/4/20.
+//  Created by Aung Ko Min on 17/4/20.
 //  Copyright © 2020 Aung Ko Min. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     @ObservedObject var service = MainService()
     
@@ -26,9 +26,9 @@ struct ContentView: View {
             .padding()
             .foregroundColor(.white)
         }
-        .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all)
         .onAppear {
-            self.service.didAppear()
+            self.service.start()
         }
     }
 }
@@ -38,7 +38,7 @@ struct MetalViewContainer: UIViewRepresentable {
     let service: MainService
     
     func makeUIView(context: Context) -> PreviewMetalView {
-        return service.arView
+        return service.metalView
     }
     
     func updateUIView(_ uiView: PreviewMetalView, context: Context) {}

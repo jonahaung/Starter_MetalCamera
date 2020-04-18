@@ -11,19 +11,17 @@ import AVFoundation
 import UIKit
 
 protocol VideoServiceDelegate: class {
-    func videoService(willCapturePhoto service: VideoService)
-    func videoService(_ service: VideoService, didCapturePhoto sampleBuffer: CVImageBuffer)
     func videoService(_ service: VideoService, didOutput buffer: CVPixelBuffer, with description: CMFormatDescription)
 }
 
-class VideoService: NSObject {
+final class VideoService: NSObject {
     
+    weak var delegate: VideoServiceDelegate?
     private var canOutputBuffer = false
     private var lastTimestamp = CMTime()
     var fps = 10
     static var videoSize = CGSize.zero
     private var captureSession = AVCaptureSession()
-    private let photoOutput = AVCapturePhotoOutput()
     private let dataOutputQueue = DispatchQueue(queueLabel: .videoOutput)
     private let captureDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera, .builtInWideAngleCamera], mediaType: .video, position: .back).devices.first
     private let videoOutput: AVCaptureVideoDataOutput = {
@@ -31,12 +29,19 @@ class VideoService: NSObject {
         return $0
     }(AVCaptureVideoDataOutput())
     
-    weak var delegate: VideoServiceDelegate?
-    
+
     deinit {
         captureSession.stopRunning()
         print("Video Service")
     }
+    
+    
+    
+}
+
+// Configurations
+extension VideoService {
+    
     func configure() {
         captureSession = AVCaptureSession()
         guard
@@ -51,7 +56,6 @@ class VideoService: NSObject {
         captureSession.addInput(captureDeviceInput)
         
         configureVideoOutput()
-        configurePhotoOutput()
         captureSession.commitConfiguration()
         
         try? device.lockForConfiguration()
@@ -66,7 +70,7 @@ class VideoService: NSObject {
         dataOutputQueue.resume()
     }
     
-    func configureVideoOutput() {
+    private func configureVideoOutput() {
         guard captureSession.canAddOutput(videoOutput) else { return }
         captureSession.addOutput(videoOutput)
         videoOutput.alwaysDiscardsLateVideoFrames = true
@@ -81,19 +85,9 @@ class VideoService: NSObject {
             connection?.preferredVideoStabilizationMode = .off
         }
         connection?.videoOrientation = .portrait
-        
+       
     }
     
-    func configurePhotoOutput() {
-        guard captureSession.canAddOutput(photoOutput) else { return }
-        captureSession.addOutput(photoOutput)
-        photoOutput.isHighResolutionCaptureEnabled = true
-        
-    }
-    
-}
-
-extension VideoService {
     private func isAuthorized(for mediaType: AVMediaType) -> Bool {
         switch AVCaptureDevice.authorizationStatus(for: mediaType) {
         case .authorized:
@@ -160,46 +154,14 @@ extension VideoService: AVCaptureVideoDataOutputSampleBufferDelegate {
         let deltaTime = timestamp - self.lastTimestamp
         if  deltaTime >= CMTimeMake(value: 1, timescale: Int32(self.fps)), let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer), let description = CMSampleBufferGetFormatDescription(sampleBuffer) {
             self.lastTimestamp = timestamp
-            
+            if VideoService.videoSize == .zero {
+                VideoService.videoSize = CGSize(width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
+            }
             self.delegate?.videoService(self, didOutput: imageBuffer, with: description)
-            VideoService.videoSize = CGSize(width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
+            
         }
         CMSampleBufferInvalidate(sampleBuffer)
         
     }
 }
 
-extension VideoService: AVCapturePhotoCaptureDelegate {
-    
-    
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        delegate?.videoService(willCapturePhoto: self)
-        //        flashScreen()
-    }
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
-        if let error = error {
-            print("Error capturing photo: \(error)")
-        }
-    }
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let photoPixelBuffer = photo.pixelBuffer else {
-            print("Error occurred while capturing photo: Missing pixel buffer (\(String(describing: error)))")
-            return
-        }
-        
-        DispatchQueue.main.async {
-            self.delegate?.videoService(self, didCapturePhoto: photoPixelBuffer)
-        }
-    }
-    
-    func capturePhoto() {
-        
-        dataOutputQueue.async {
-            let photoSettings = AVCapturePhotoSettings(format: [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)])
-            self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
-        }
-    }
-}

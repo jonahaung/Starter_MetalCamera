@@ -7,43 +7,38 @@
 //
 
 import UIKit
-import ARKit
+import AVFoundation
 
 final class MainService: ObservableObject {
     
-    let arView = PreviewMetalView()
+    let metalView = PreviewMetalView()
     let videoService = VideoService()
-    private let videoFilter = VideoFilterRenderer()
+    private let filterService = FilterService()
     
     init() {
         videoService.configure()
-        videoFilter.filterType = .Crystal
         videoService.delegate = self
     }
-    
-    func didAppear() {
-        videoService.start()
+    deinit {
+        stop()
     }
 }
 
+// Actions
+extension MainService {
+    func start() {
+        videoService.start()
+    }
+    func stop() {
+        
+    }
+}
+
+// Video Service
 extension MainService: VideoServiceDelegate {
-    func videoService(willCapturePhoto service: VideoService) {
-        
-    }
-    
-    func videoService(_ service: VideoService, didCapturePhoto sampleBuffer: CVImageBuffer) {
-        
-    }
     
     func videoService(_ service: VideoService, didOutput buffer: CVPixelBuffer, with description: CMFormatDescription) {
-        if !videoFilter.isPrepared {
-            videoFilter.prepare(with: description, retainHint: 3)
-        }
-        guard let rendered = videoFilter.render(pixelBuffer: buffer) else {
-            return
-        }
-        arView.pixelBuffer = rendered
+        metalView.pixelBuffer = filterService.filter(buffer, with: description)
     }
-    
     
 }
