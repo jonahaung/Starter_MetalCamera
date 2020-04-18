@@ -16,7 +16,7 @@ final class MainService: ObservableObject {
     private let filterService = FilterService()
     
     init() {
-        videoService.configure()
+       
         videoService.delegate = self
     }
     deinit {

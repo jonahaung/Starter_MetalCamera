@@ -30,19 +30,40 @@ final class VideoService: NSObject {
     }(AVCaptureVideoDataOutput())
     
 
+    override init() {
+        super.init()
+        setup()
+    }
     deinit {
         captureSession.stopRunning()
         print("Video Service")
     }
+}
+
+// AVCaptureVideoDataOutputSampleBufferDelegate
+extension VideoService: AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    
-    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard canOutputBuffer else { return }
+        let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+        let deltaTime = timestamp - lastTimestamp
+        if  deltaTime >= CMTimeMake(value: 1, timescale: Int32(fps)), let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer), let description = CMSampleBufferGetFormatDescription(sampleBuffer) {
+            lastTimestamp = timestamp
+            if VideoService.videoSize == .zero {
+                VideoService.videoSize = CGSize(width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
+            }
+            self.delegate?.videoService(self, didOutput: imageBuffer, with: description)
+            
+        }
+        CMSampleBufferInvalidate(sampleBuffer)
+        
+    }
 }
 
 // Configurations
 extension VideoService {
     
-    func configure() {
+    private func setup() {
         captureSession = AVCaptureSession()
         guard
             isAuthorized(for: .video),
@@ -106,13 +127,14 @@ extension VideoService {
         AVCaptureDevice.requestAccess(for: mediaType) { [weak self] granted in
             guard let self = self else { return }
             if granted {
-                self.configure()
+                self.setup()
                 self.dataOutputQueue.resume()
             }
         }
     }
 }
 
+// Actions
 extension VideoService {
     
     func  perform(_ block: @escaping (()->Void)) {
@@ -124,6 +146,7 @@ extension VideoService {
             self.captureSession.startRunning()
         }
     }
+    
     func sliderValueDidChange(_ value: Float) {
         do {
             try captureDevice?.lockForConfiguration()
@@ -143,25 +166,7 @@ extension VideoService {
             print("captureDevice?.lockForConfiguration() denied")
         }
     }
-    
-    
 }
-extension VideoService: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard canOutputBuffer else { return }
-        let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-        let deltaTime = timestamp - self.lastTimestamp
-        if  deltaTime >= CMTimeMake(value: 1, timescale: Int32(self.fps)), let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer), let description = CMSampleBufferGetFormatDescription(sampleBuffer) {
-            self.lastTimestamp = timestamp
-            if VideoService.videoSize == .zero {
-                VideoService.videoSize = CGSize(width: CVPixelBufferGetWidth(imageBuffer), height: CVPixelBufferGetHeight(imageBuffer))
-            }
-            self.delegate?.videoService(self, didOutput: imageBuffer, with: description)
-            
-        }
-        CMSampleBufferInvalidate(sampleBuffer)
-        
-    }
-}
+
+
 
